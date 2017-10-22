@@ -1,6 +1,6 @@
 {
   "name": "parse-query-gen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helps you generate queries for your Parse Backend, structuring them with objects",
   "main": "out/index.js",
   "scripts": {
@@ -48,5 +48,13 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/out"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owsas/parse-query-gen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owsas/parse-query-gen/issues"
+  },
+  "homepage": "https://github.com/owsas/parse-query-gen#readme"
 }
