@@ -4,7 +4,11 @@
   "description": "Helps you generate queries for your Parse Backend, structuring them with objects",
   "main": "out/index.js",
   "scripts": {
-    "test": "jest --ci --silent"
+    "test": "jest --ci --silent",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prepublish": "tsc",
+    "publish": "npm publish"
   },
   "keywords": [
     "parse",
@@ -27,5 +31,23 @@
     "assert": "^1.4.1",
     "is": "^3.2.1",
     "parse": "^1.10.1"
+  },
+  "jest": {
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/out"
+    ]
   }
 }
