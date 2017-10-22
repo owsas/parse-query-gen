@@ -1,14 +1,13 @@
 {
   "name": "parse-query-gen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helps you generate queries for your Parse Backend, structuring them with objects",
   "main": "out/index.js",
   "scripts": {
     "test": "jest --ci --silent",
     "build": "tsc",
     "watch": "tsc -w",
-    "prepublish": "tsc",
-    "publish": "npm publish"
+    "prepublish": "tsc"
   },
   "keywords": [
     "parse",
