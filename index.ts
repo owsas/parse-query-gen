@@ -21,7 +21,7 @@ export interface IParams {
   select ? : string[];
 }
 
-export default class ParseQueryGen {
+export class ParseQueryGen {
   /**
    * 
    * @param {Parse} _Parse 

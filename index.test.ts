@@ -1,5 +1,5 @@
 import * as Parse from 'parse/node';
-import ParseQueryGen from './index';
+import { ParseQueryGen } from './index';
 
 test('should proccess ok the params', () => {
   ParseQueryGen.setParse(Parse);
