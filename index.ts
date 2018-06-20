@@ -19,6 +19,7 @@ export interface IParams {
   query ? : any;
   matches ? : {[key:string]: any;}; 
   select ? : string[];
+  distinct? : string[];
 }
 
 export class ParseQueryGen {
@@ -48,6 +49,7 @@ export class ParseQueryGen {
     params.lessThan = params.lessThan || {};
     params.matches = params.matches || {};
     params.select = params.select || [];
+    params.distinct = params.distinct || [];
 
     // validation
     assert.ok(is.object(params));
@@ -63,8 +65,7 @@ export class ParseQueryGen {
     assert.ok(is.object(params.greaterThan));
     assert.ok(is.object(params.lessThan));
 
-    const q = params.query || new parse.Query(params.className);
-
+    const q = ((params.query || new parse.Query(params.className)) as Parse.Query);
     if (params.equalTo) {
       Object.keys(params.equalTo).forEach((key) => {
         if (params.equalTo[key]) {
@@ -116,13 +117,13 @@ export class ParseQueryGen {
     if (params.matches) {
       Object.keys(params.matches).forEach((key) => {
         if (params.matches[key]) {
-          q.matches(key, params.matches[key]);
+          q.matches(key, params.matches[key], 'ig');
         }
       });
     }
 
     if (params.select.length) {
-      q.select(params.select);
+      q.select(...params.select);
     }
 
     if (params.include.length) {
@@ -138,6 +139,12 @@ export class ParseQueryGen {
     if (params.descending) {
       params.descending.forEach((p) => {
         q.addDescending(p);
+      });
+    }
+
+    if (params.distinct) {
+      params.distinct.forEach((p) => {
+        q.distinct(p);
       });
     }
 
