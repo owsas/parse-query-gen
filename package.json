@@ -7,7 +7,7 @@
     "test": "jest --ci --silent",
     "build": "tsc",
     "watch": "tsc -w",
-    "prepublish": "tsc"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "parse",
