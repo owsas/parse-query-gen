@@ -15,6 +15,7 @@ export interface IParams {
   containsAll?: {[key:string]: any};  
   include?: string[];
   exists?: string[];
+  doesNotExist?: string[];
   descending?: string[]; 
   ascending?: string[]; 
   query ? : any;
@@ -163,6 +164,12 @@ export class ParseQueryGen {
     if (params.exists) {
       params.exists.forEach((p) => {
         q.exists(p);
+      });
+    }
+
+    if (params.doesNotExist) {
+      params.doesNotExist.forEach((p) => {
+        q.doesNotExist(p);
       });
     }
 
