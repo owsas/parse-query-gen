@@ -1,9 +1,9 @@
 import * as Parse from 'parse/node';
-import { ParseQueryGen } from './index';
+import { ParseQueryGen, IParams } from './index';
 
 test('should proccess ok the params', () => {
   ParseQueryGen.setParse(Parse);
-  const params = {
+  const params: IParams = {
     className: 'MyClass',
     equalTo: {
       key: 'value',
@@ -33,6 +33,7 @@ test('should proccess ok the params', () => {
       w2: ['abc', '123'],
     },
     include: ['brand'],
+    exists: ['test1', 'test2'],
   };
 
   const q = ParseQueryGen.gen(params);
@@ -51,7 +52,7 @@ test('should proccess ok the params', () => {
   expect(json.where.key7).toEqual({ $ne: params.notEqualTo.key7 });
   expect(json.where.w).toEqual({ $in: params.containedIn.w });
   expect(json.where.w2).toEqual({ $all: params.containsAll.w2 });
-  expect(json.where.string).toEqual({ $regex: params.matches.string });
+  expect(json.where.string).toEqual({ $regex: params.matches.string, $options: 'ig' });
   expect(json.include).toEqual('brand');
   expect(json.keys).toEqual(params.select.join(','));
   expect(json.order.indexOf('createdAt') !== -1).toBe(true);

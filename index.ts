@@ -14,6 +14,7 @@ export interface IParams {
   greaterThan?:{[key:string]: any}; 
   containsAll?: {[key:string]: any};  
   include?: string[];
+  exists?: string[];
   descending?: string[]; 
   ascending?: string[]; 
   query ? : any;
@@ -50,6 +51,7 @@ export class ParseQueryGen {
     params.matches = params.matches || {};
     params.select = params.select || [];
     params.distinct = params.distinct || [];
+    params.exists = params.exists || [];
 
     // validation
     assert.ok(is.object(params));
@@ -62,6 +64,7 @@ export class ParseQueryGen {
     assert.ok(is.array(params.ascending));
     assert.ok(is.array(params.descending));
     assert.ok(is.array(params.select));
+    assert.ok(is.array(params.exists));
     assert.ok(is.object(params.greaterThan));
     assert.ok(is.object(params.lessThan));
 
@@ -145,6 +148,12 @@ export class ParseQueryGen {
     if (params.distinct) {
       params.distinct.forEach((p) => {
         q.distinct(p);
+      });
+    }
+
+    if (params.exists) {
+      params.exists.forEach((p) => {
+        q.exists(p);
       });
     }
 
