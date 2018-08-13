@@ -21,6 +21,7 @@ export interface IParams {
   matches ? : {[key:string]: any;}; 
   select ? : string[];
   distinct? : string[];
+  matchesQuery?: {[key:string]: any; };
 }
 
 export class ParseQueryGen {
@@ -121,6 +122,14 @@ export class ParseQueryGen {
       Object.keys(params.matches).forEach((key) => {
         if (params.matches[key]) {
           q.matches(key, params.matches[key], 'ig');
+        }
+      });
+    }
+
+    if (params.matchesQuery) {
+      Object.keys(params.matchesQuery).forEach((key) => {
+        if (params.matchesQuery[key]) {
+          q.matchesQuery(key, params.matchesQuery[key]);
         }
       });
     }

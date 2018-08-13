@@ -34,6 +34,9 @@ test('should proccess ok the params', () => {
     },
     include: ['brand'],
     exists: ['test1', 'test2'],
+    matchesQuery: {
+      testKey: new Parse.Query('Test').equalTo('active', true),
+    },
   };
 
   const q = ParseQueryGen.gen(params);
