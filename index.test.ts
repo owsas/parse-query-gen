@@ -55,7 +55,7 @@ test('should proccess ok the params', () => {
   expect(json.where.key7).toEqual({ $ne: params.notEqualTo.key7 });
   expect(json.where.w).toEqual({ $in: params.containedIn.w });
   expect(json.where.w2).toEqual({ $all: params.containsAll.w2 });
-  expect(json.where.string).toEqual({ $regex: params.matches.string, $options: 'ig' });
+  expect(json.where.string).toEqual({ $regex: params.matches.string });
   expect(json.include).toEqual('brand');
   expect(json.keys).toEqual(params.select.join(','));
   expect(json.order.indexOf('createdAt') !== -1).toBe(true);
