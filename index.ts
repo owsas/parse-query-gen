@@ -121,7 +121,7 @@ export class ParseQueryGen {
     if (params.matches) {
       Object.keys(params.matches).forEach((key) => {
         if (params.matches[key]) {
-          q.matches(key, params.matches[key], 'ig');
+          q.matches(key, params.matches[key], undefined);
         }
       });
     }
